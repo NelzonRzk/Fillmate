@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FillMate - License Purchase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .license-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .payment-method {
+            transition: all 0.2s ease;
+        }
+        .payment-method.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        #loadingIndicator {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <img src="FMLogo-local.png" alt="FillMate software logo showing a document icon with a checkmark" class="h-10 w-10">
+                    <h1 class="text-xl font-semibold text-gray-800">FillMate</h1>
+                </div>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-500">Home</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-500">Features</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-500">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Purchase FillMate License</h2>
+                <p class="text-gray-600">Unlock all premium features with a FillMate license</p>
+            </div>
+
+            <form id="licenseForm" class="space-y-6" onsubmit="return false">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-medium text-gray-800 mb-4">Your Email</h3>
+                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="your.email@gmail.com" required>
+                    <p class="mt-2 text-sm text-gray-500">License key will be sent to this email</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-medium text-gray-800 mb-4">Select License Duration</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="license-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-all duration-200 hover:shadow-lg">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">1 Month</h4>
+                                    <p class="text-sm text-gray-500">Standard license</p>
+                                </div>
+                                <span class="text-lg font-semibold text-blue-600">Rp 100,000</span>
+                            </div>
+                            <input type="radio" name="licenseType" value="1-month" id="1-month" class="hidden">
+                            <ul class="mt-4 space-y-2">
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    All premium features
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Automatic updates
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Priority support
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="license-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-all duration-200 hover:shadow-lg">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">1 Year</h4>
+                                    <p class="text-sm text-gray-500">Best value</p>
+                                </div>
+                                <span class="text-lg font-semibold text-blue-600">Rp 430,000</span>
+                            </div>
+                            <input type="radio" name="licenseType" value="1-year" id="1-year" class="hidden">
+                            <ul class="mt-4 space-y-2">
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    All premium features
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Automatic updates
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Priority support
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    57% savings vs monthly
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-medium text-gray-800 mb-4">Payment Method</h3>
+                    <div class="space-y-4">
+                        <div class="payment-method border border-gray-200 rounded-lg p-4 cursor-pointer" data-method="qris">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="h-8 w-8 bg-blue-50 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">QRIS</span>
+                                </div>
+                                <input type="radio" name="paymentMethod" value="qris">
+                            </div>
+                        </div>
+                        <div class="payment-method border border-gray-200 rounded-lg p-4 cursor-pointer" data-method="bca">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">Bank Transfer (BCA)</span>
+                                </div>
+                                <input type="radio" name="paymentMethod" value="bca">
+                            </div>
+                            <div id="bcaDetails" class="mt-3 hidden text-sm bg-blue-50 p-4 rounded-md border border-blue-100">
+                                <p class="font-medium text-blue-800">BCA Account Details</p>
+                                <div class="mt-2 space-y-1">
+                                    <p class="text-blue-700"><span class="font-medium">Account Number:</span> 2941377817</p>
+                                    <p class="text-blue-700"><span class="font-medium">Account Name:</span> Nielson Razzaka Alfarizi</p>
+                                </div>
+                                <p class="mt-2 text-sm text-blue-600 font-medium">Important: Include your email as payment reference</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="qrisContainer" class="mt-4 hidden">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-sm font-medium text-gray-800 mb-2">Scan QRIS code below:</p>
+                            <!-- This is a placeholder, you'll need to replace with your actual QRIS image -->
+                            <img src="qris-local.jpeg" alt="QRIS payment code for FillMate license purchases" class="mx-auto w-48 h-48 border border-gray-200">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sticky bottom-0 bg-white border-t border-gray-100 p-4 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500">Total</p>
+                            <p class="text-xl font-semibold text-gray-800" id="totalAmount">Rp 0</p>
+                        </div>
+                        <button type="button" id="submitBtn" class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Complete Purchase
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div id="loadingIndicator" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div class="flex items-center">
+                <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900">Processing Payment</h3>
+                    <p class="text-gray-600">Please wait while we process your payment...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4 text-center">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mt-3">Payment Successful!</h3>
+            <div class="mt-2">
+                <p class="text-sm text-gray-500">Your license key will be sent to your email once payment is confirmed.</p>
+                <p class="text-sm text-gray-500 mt-2">Usually takes 1-2 business days.</p>
+            </div>
+            <div class="mt-4">
+                <button type="button" class="px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors" onclick="closeSuccessModal()">
+                    Got it, thanks!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwnB9ZBp7yFzVVFce6yJXwTCLQ5u9_PYalgvuDFbc3fujv5S32-FA4_VGi2LzYPc1jU/exec'; // Replace with your deployed web app URL
+        
+        // Price mapping
+        const prices = {
+            '1-month': 100000,
+            '1-year': 430000
+        };
+
+        // DOM elements
+        const licenseCards = document.querySelectorAll('.license-card');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const submitBtn = document.getElementById('submitBtn');
+        const totalAmount = document.getElementById('totalAmount');
+        const bcaDetails = document.getElementById('bcaDetails');
+        const qrisContainer = document.getElementById('qrisContainer');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const successModal = document.getElementById('successModal');
+        const form = document.getElementById('licenseForm');
+
+        // License selection
+        licenseCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Reset card selection
+                licenseCards.forEach(c => {
+                    c.classList.remove('border-blue-500', 'ring-2', 'ring-blue-200');
+                });
+                
+                // Select current card
+                this.classList.add('border-blue-500', 'ring-2', 'ring-blue-200');
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                // Update total amount
+                totalAmount.textContent = `Rp ${prices[radio.value].toLocaleString('id-ID')}`;
+                
+                // Enable submit button if payment method is selected
+                updateSubmitButton();
+            });
+        });
+
+        // Payment method selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                // Reset all methods
+                paymentMethods.forEach(m => {
+                    m.classList.remove('selected');
+                    m.querySelector('input[type="radio"]').checked = false;
+                });
+                
+                // Select current method
+                this.classList.add('selected');
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                // Show additional details if needed
+                if (this.dataset.method === 'bca') {
+                    bcaDetails.classList.remove('hidden');
+                    qrisContainer.classList.add('hidden');
+                } else if (this.dataset.method === 'qris') {
+                    bcaDetails.classList.add('hidden');
+                    qrisContainer.classList.remove('hidden');
+                }
+                
+                // Enable submit button if license is selected
+                updateSubmitButton();
+            });
+        });
+
+        // Enable/disable submit button based on selection
+        function updateSubmitButton() {
+            const licenseSelected = document.querySelector('input[name="licenseType"]:checked');
+            const paymentSelected = document.querySelector('input[name="paymentMethod"]:checked');
+            
+            if (licenseSelected && paymentSelected) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        // Form submission
+        submitBtn.addEventListener('click', async function() {
+            const email = document.getElementById('email').value;
+            const licenseType = document.querySelector('input[name="licenseType"]:checked')?.value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+
+            if (!email || !licenseType || !paymentMethod) {
+                alert('Please complete all fields before submitting.');
+                return;
+            }
+
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                document.getElementById('email').focus();
+                return;
+            }
+
+            // Show loading indicator
+            loadingIndicator.style.display = 'flex';
+
+            // Prepare data for Google Sheets
+            const formData = {
+                email: email,
+                licenseType: licenseType,
+                amount: prices[licenseType],
+                paymentMethod: paymentMethod
+            };
+
+            try {
+                const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                loadingIndicator.style.display = 'none';
+                successModal.classList.remove('hidden');
+                console.log('Order submitted:', formData);
+            } catch (error) {
+                loadingIndicator.style.display = 'none';
+                alert('Failed to submit order. Please try again or contact support.');
+                console.error('Submission error:', error);
+            }
+        });
+
+        // Close success modal
+        function closeSuccessModal() {
+            successModal.classList.add('hidden');
+            form.reset();
+            licenseCards.forEach(card => {
+                card.classList.remove('border-blue-500', 'ring-2', 'ring-blue-200');
+            });
+            paymentMethods.forEach(method => {
+                method.classList.remove('selected');
+                method.querySelector('input[type="radio"]').checked = false;
+            });
+            totalAmount.textContent = 'Rp 0';
+            bcaDetails.classList.add('hidden');
+            qrisContainer.classList.add('hidden');
+            submitBtn.disabled = true;
+        }
+
+        // Email validation on blur
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value)) {
+                this.classList.add('border-red-400');
+            } else {
+                this.classList.remove('border-red-400');
+            }
+        });
+    </script>
+</body>
+</html>
